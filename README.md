@@ -16,6 +16,9 @@ The `unstoppablemango/pia-manual-connections` docker image defined in [Dockerfil
 The repository is located at `/src` with the entrypoint defined as [entrypoint.sh](./entrypoint.sh), which sources [/src/run_setup.sh](https://github.com/pia-foss/manual-connections/blob/master/run_setup.sh).
 A minimal set of configuration variables required to run the script can be found [here](https://github.com/pia-foss/manual-connections/#automated-setup).
 
+By default, the scripts will persist data such as the auth token and serverlist in `/opt/piavpn-manual`.
+You can mount a volume at this directory to interact with the script output.
+
 ### Configuration
 
 The supported environment variables are defined [over here](https://github.com/pia-foss/manual-connections/#automated-setup).

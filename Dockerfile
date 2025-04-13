@@ -22,4 +22,6 @@ WORKDIR /src
 COPY --from=base /src ./
 COPY entrypoint.sh .
 
+VOLUME [ "/opt/piavpn-manual" ]
+
 CMD [ "/src/entrypoint.sh" ]
