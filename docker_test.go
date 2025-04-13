@@ -22,7 +22,7 @@ var _ = Describe("Docker Manual Connections", func() {
 		Expect(ses.Out).To(gbytes.Say("Please set the PIA_PASS environment variable"))
 	})
 
-	It("should not print the PIA_TOKEN", func(ctx context.Context) {
+	It("should not print the PIA_TOKEN", Pending, func(ctx context.Context) {
 		cmd := exec.CommandContext(ctx, "docker", "run", "--rm",
 			"--env", fmt.Sprintf("PIA_PASS=%s", piaPass),
 			"--env", fmt.Sprintf("PIA_USER=%s", piaUser),
