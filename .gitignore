@@ -3,3 +3,4 @@
 !.vscode/extensions.json
 .envrc
 bin/
+*.test

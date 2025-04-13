@@ -2,6 +2,8 @@ package manual_connections_test
 
 import (
 	"context"
+	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"testing"
@@ -19,6 +21,8 @@ const (
 var (
 	gitRoot    string
 	dockerfile string
+	piaPass    string
+	piaUser    string
 )
 
 func TestManualConnections(t *testing.T) {
@@ -42,4 +46,12 @@ var _ = BeforeSuite(func(ctx context.Context) {
 	ses, err := gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
 	Expect(err).NotTo(HaveOccurred())
 	Eventually(ses, "30s").Should(gexec.Exit(0))
+
+	By("Retrieving the PIA credentials")
+	if piaPass = os.Getenv("PIA_PASS"); piaPass == "" {
+		fmt.Fprint(GinkgoWriter, "PIA_PASS not set")
+	}
+	if piaUser = os.Getenv("PIA_USER"); piaUser == "" {
+		fmt.Fprint(GinkgoWriter, "PIA_USER not set")
+	}
 })
