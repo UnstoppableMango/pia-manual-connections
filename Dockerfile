@@ -10,7 +10,7 @@ ARG PIA_VERSION=e956c57849a38f912e654e0357f5ae456dfd1742
 WORKDIR /src
 ADD https://github.com/pia-foss/manual-connections.git#${PIA_VERSION} .
 COPY patches/*.patch /patches/
-RUN git apply /patches/*.patch
+# RUN git apply /patches/*.patch
 
 FROM ubuntu:noble-20250716@sha256:7c06e91f61fa88c08cc74f7e1b7c69ae24910d745357e0dfe1d2c0322aaf20f9 AS final
 

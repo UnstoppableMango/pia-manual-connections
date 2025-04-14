@@ -11,7 +11,7 @@ import (
 	"github.com/onsi/gomega/gexec"
 )
 
-var _ = Describe("Docker Manual Connections", func() {
+var _ = Describe("Docker Tests", func() {
 	It("should fail when password is not provided", func(ctx context.Context) {
 		cmd := exec.CommandContext(ctx, "docker", "run", "--rm", image)
 
@@ -22,10 +22,11 @@ var _ = Describe("Docker Manual Connections", func() {
 		Expect(ses.Out).To(gbytes.Say("Please set the PIA_PASS environment variable"))
 	})
 
-	It("should not print the PIA_TOKEN", Pending, func(ctx context.Context) {
+	FIt("should not print the PIA_TOKEN", func(ctx context.Context) {
 		cmd := exec.CommandContext(ctx, "docker", "run", "--rm",
 			"--env", fmt.Sprintf("PIA_PASS=%s", piaPass),
 			"--env", fmt.Sprintf("PIA_USER=%s", piaUser),
+			"--add-host", fmt.Sprintf("%s=%s", piaUrl, proxyIp),
 			image,
 		)
 

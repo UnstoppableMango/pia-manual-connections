@@ -15,7 +15,11 @@ import (
 )
 
 const (
-	image = "unstoppablemango/pia-manual-connections:e2e"
+	image     = "unstoppablemango/pia-manual-connections:e2e"
+	proxyAddr = "127.0.0.1:443"
+	proxyIp   = "127.0.0.1"
+	piaToken  = "test-token-please-ignore"
+	piaUrl    = "www.privateinternetaccess.com"
 )
 
 var (
@@ -23,6 +27,7 @@ var (
 	dockerfile string
 	piaPass    string
 	piaUser    string
+	proxySes   *gexec.Session
 )
 
 func TestManualConnections(t *testing.T) {
@@ -54,4 +59,14 @@ var _ = BeforeSuite(func(ctx context.Context) {
 	if piaUser = os.Getenv("PIA_USER"); piaUser == "" {
 		fmt.Fprint(GinkgoWriter, "PIA_USER not set")
 	}
+
+	By("Starting the PIA proxy")
+	cmd = exec.CommandContext(ctx, "go", "tool",
+		"proxy", "--bind-addr", proxyAddr,
+	)
+	cmd.Env = append(cmd.Env,
+		fmt.Sprintf("PIA_PROXY_TOKEN=%s", piaToken),
+	)
+	ses, err = gexec.Start(cmd, GinkgoWriter, GinkgoWriter)
+	Expect(err).NotTo(HaveOccurred())
 })
