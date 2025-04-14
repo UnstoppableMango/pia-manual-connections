@@ -7,6 +7,7 @@ toolchain go1.25.6
 tool (
 	github.com/onsi/ginkgo/v2/ginkgo
 	github.com/unmango/devctl
+	github.com/unmango/go-pia/cmd/proxy
 )
 
 require (
@@ -65,4 +66,5 @@ require (
 	golang.org/x/text v0.33.0 // indirect
 	golang.org/x/tools v0.41.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	resty.dev/v3 v3.0.0-beta.2 // indirect
 )
