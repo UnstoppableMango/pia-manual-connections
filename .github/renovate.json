@@ -2,8 +2,19 @@
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": [
 		"config:recommended",
-		"customManagers:dockerfileVersions",
 		"github>UnstoppableMango/renovate-config"
 	],
-	"automerge": true
+	"automerge": true,
+	"customManagers": [
+		{
+			"customType": "regex",
+			"fileMatch": [
+				"(^|/|\\.)([Dd]ocker|[Cc]ontainer)file$",
+				"(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
+			],
+			"matchStrings": [
+				"# renovate: datasource=(?<datasource>[a-zA-Z0-9-._]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?(?: registryUrl=(?<registryUrl>[^\\s]+?))?\\s(?:ENV|ARG)\\s+[A-Za-z0-9_]+?_VERSION[ =][\"']?(?<currentDigest>.+?)[\"']?\\s"
+			]
+		}
+	]
 }
