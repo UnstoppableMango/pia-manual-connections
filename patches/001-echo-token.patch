@@ -1,98 +1,106 @@
 diff --git a/connect_to_openvpn_with_token.sh b/connect_to_openvpn_with_token.sh
-index f1eb570..ce1a4b7 100755
+index bc3a7f5..fb97793 100755
 --- a/connect_to_openvpn_with_token.sh
 +++ b/connect_to_openvpn_with_token.sh
-@@ -173,7 +173,7 @@ if [ "$PIA_DNS" != true ]; then
-   echo If you want to also enable PIA DNS, please start the script
-   echo with the env var PIA_DNS=true. Example:
-   echo $ OVPN_SERVER_IP=\"$OVPN_SERVER_IP\" OVPN_HOSTNAME=\"$OVPN_HOSTNAME\" \
--    PIA_TOKEN=\"$PIA_TOKEN\" CONNECTION_SETTINGS=\"$CONNECTION_SETTINGS\" \
-+    PIA_TOKEN=\"***\" CONNECTION_SETTINGS=\"$CONNECTION_SETTINGS\" \
+@@ -182,7 +182,7 @@ if [[ $PIA_DNS != "true" ]]; then
+   echo "If you want to also enable PIA DNS, please start the script"
+   echo "with the env var PIA_DNS=true. Example:"
+   echo $ OVPN_SERVER_IP=\""$OVPN_SERVER_IP"\" OVPN_HOSTNAME=\""$OVPN_HOSTNAME"\" \
+-    PIA_TOKEN=\""$PIA_TOKEN"\" CONNECTION_SETTINGS=\""$CONNECTION_SETTINGS"\" \
++    PIA_TOKEN=\"***\" CONNECTION_SETTINGS=\""$CONNECTION_SETTINGS"\" \
      PIA_PF=true PIA_DNS=true ./connect_to_openvpn_with_token.sh
  else
    cp openvpn_config/openvpn_up_dnsoverwrite.sh /opt/piavpn-manual/openvpn_up.sh
-@@ -236,7 +236,7 @@ To disconnect the VPN, run:
+@@ -244,7 +244,7 @@ To disconnect the VPN, run:
  # This section will stop the script if PIA_PF is not set to "true".
- if [ "$PIA_PF" != true ]; then
-   echo If you want to also enable port forwarding, you can start the script:
--  echo -e $ ${GREEN}PIA_TOKEN=$PIA_TOKEN \
-+  echo -e $ ${GREEN}PIA_TOKEN=*** \
-     PF_GATEWAY=$gateway_ip \
-     PF_HOSTNAME=$OVPN_HOSTNAME \
-     ./port_forwarding.sh${NC}
-@@ -257,7 +257,7 @@ echo
+ if [[ $PIA_PF != "true" ]]; then
+   echo "If you want to also enable port forwarding, you can start the script:"
+-  echo -e "$ ${green}PIA_TOKEN=$PIA_TOKEN" \
++  echo -e "$ ${green}PIA_TOKEN=***" \
+     "PF_GATEWAY=$gateway_ip" \
+     "PF_HOSTNAME=$OVPN_HOSTNAME" \
+     "./port_forwarding.sh${nc}"
+@@ -265,7 +265,7 @@ echo
  echo
  
  echo -e "Starting procedure to enable port forwarding by running the following command:
--$ ${GREEN}PIA_TOKEN=$PIA_TOKEN \\
-+$ ${GREEN}PIA_TOKEN=*** \\
+-$ ${green}PIA_TOKEN=$PIA_TOKEN \\
++$ ${green}PIA_TOKEN=*** \\
    PF_GATEWAY=$gateway_ip \\
    PF_HOSTNAME=$OVPN_HOSTNAME \\
-   ./port_forwarding.sh${NC}"
+   ./port_forwarding.sh${nc}"
 diff --git a/connect_to_wireguard_with_token.sh b/connect_to_wireguard_with_token.sh
-index bda0ce1..5d5eaff 100755
+index 7922892..bff0d00 100755
 --- a/connect_to_wireguard_with_token.sh
 +++ b/connect_to_wireguard_with_token.sh
-@@ -163,7 +163,7 @@ To disconnect the VPN, run:
- # This section will stop the script if PIA_PF is not set to "true".
- if [ "$PIA_PF" != true ]; then
-   echo If you want to also enable port forwarding, you can start the script:
--  echo -e $ ${GREEN}PIA_TOKEN=$PIA_TOKEN \
-+  echo -e $ ${GREEN}PIA_TOKEN=*** \
-     PF_GATEWAY=$WG_SERVER_IP \
-     PF_HOSTNAME=$WG_HOSTNAME \
-     ./port_forwarding.sh${NC}
-@@ -184,7 +184,7 @@ echo
- echo
+@@ -186,7 +186,7 @@ if [[ $PIA_CONNECT == "true" ]]; then
+   # This section will stop the script if PIA_PF is not set to "true".
+   if [[ $PIA_PF != "true" ]]; then
+     echo "If you want to also enable port forwarding, you can start the script:"
+-    echo -e "$ ${green}PIA_TOKEN=$PIA_TOKEN" \
++    echo -e "$ ${green}PIA_TOKEN=***" \
+       "PF_GATEWAY=$WG_SERVER_IP" \
+       "PF_HOSTNAME=$WG_HOSTNAME" \
+       "./port_forwarding.sh${nc}"
+@@ -207,7 +207,7 @@ if [[ $PIA_CONNECT == "true" ]]; then
+   echo
  
- echo -e "Starting procedure to enable port forwarding by running the following command:
--$ ${GREEN}PIA_TOKEN=$PIA_TOKEN \\
-+$ ${GREEN}PIA_TOKEN=*** \\
-   PF_GATEWAY=$WG_SERVER_IP \\
-   PF_HOSTNAME=$WG_HOSTNAME \\
-   ./port_forwarding.sh${NC}"
+   echo -e "Starting procedure to enable port forwarding by running the following command:
+-  $ ${green}PIA_TOKEN=$PIA_TOKEN \\
++  $ ${green}PIA_TOKEN=*** \\
+     PF_GATEWAY=$WG_SERVER_IP \\
+     PF_HOSTNAME=$WG_HOSTNAME \\
+     ./port_forwarding.sh${nc}"
 diff --git a/get_region.sh b/get_region.sh
-index a59460d..514b652 100755
+index 661bd27..ff1688b 100755
 --- a/get_region.sh
 +++ b/get_region.sh
-@@ -227,7 +227,7 @@ if [[ -z "$PIA_TOKEN" ]] || [[ $PIA_TOKEN == "" ]]; then
+@@ -227,7 +227,7 @@ if [[ -z $PIA_TOKEN ]]; then
    export PIA_TOKEN
    rm -f /opt/piavpn-manual/token
  else
--  echo -e "Using existing token ${GREEN}$PIA_TOKEN${NC}."
-+  echo -e "Using existing token ${GREEN}***${NC}."
+-  echo -e "Using existing token ${green}$PIA_TOKEN${nc}."
++  echo -e "Using existing token ${green}***${nc}."
    echo
  fi
  
-@@ -236,7 +236,7 @@ if [[ $VPN_PROTOCOL == wireguard ]]; then
-   echo The ./get_region.sh script got started with
-   echo -e ${GREEN}VPN_PROTOCOL=wireguard${NC}, so we will automatically connect to WireGuard,
-   echo by running this command:
--  echo -e $ ${GREEN}PIA_TOKEN=$PIA_TOKEN \\
-+  echo -e $ ${GREEN}PIA_TOKEN=*** \\
-   echo WG_SERVER_IP=$bestServer_WG_IP WG_HOSTNAME=$bestServer_WG_hostname \\
-   echo -e PIA_PF=$PIA_PF ./connect_to_wireguard_with_token.sh${NC}
+@@ -236,7 +236,7 @@ if [[ $VPN_PROTOCOL == "wireguard" ]]; then
+   echo "The ./get_region.sh script got started with"
+   echo -e "${green}VPN_PROTOCOL=wireguard${nc}, so we will automatically connect to WireGuard,"
+   echo "by running this command:"
+-  echo -e "$ ${green}PIA_TOKEN=$PIA_TOKEN \\"
++  echo -e "$ ${green}PIA_TOKEN=*** \\"
+   echo "WG_SERVER_IP=$bestServer_WG_IP WG_HOSTNAME=$bestServer_WG_hostname \\"
+   echo -e "PIA_PF=$PIA_PF ./connect_to_wireguard_with_token.sh${nc}"
    echo
 @@ -257,7 +257,7 @@ if [[ $VPN_PROTOCOL == openvpn* ]]; then
-   echo The ./get_region.sh script got started with
-   echo -e ${GREEN}VPN_PROTOCOL=$VPN_PROTOCOL${NC}, so we will automatically
-   echo connect to OpenVPN, by running this command:
--  echo -e $ ${GREEN}PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN \\
-+  echo -e $ ${GREEN}PIA_PF=$PIA_PF PIA_TOKEN=*** \\
-   echo   OVPN_SERVER_IP=$serverIP \\
-   echo   OVPN_HOSTNAME=$serverHostname \\
-   echo   CONNECTION_SETTINGS=$VPN_PROTOCOL \\
-diff --git a/get_token.sh b/get_token.sh
-index 6a74935..de42ed6 100755
---- a/get_token.sh
-+++ b/get_token.sh
-@@ -87,8 +87,8 @@ echo -e ${GREEN}OK!
- echo
- token=$(echo "$generateTokenResponse" | jq -r '.token')
- tokenExpiration=$(timeout_timestamp)
--echo -e PIA_TOKEN=$token${NC}
- echo $token > /opt/piavpn-manual/token || exit 1
-+echo -e PIA_TOKEN=***${NC}
- echo $tokenExpiration >> /opt/piavpn-manual/token
- echo 
- echo This token will expire in 24 hours, on $tokenExpiration.
+   echo "The ./get_region.sh script got started with"
+   echo -e "${green}VPN_PROTOCOL=$VPN_PROTOCOL${nc}, so we will automatically"
+   echo "connect to OpenVPN, by running this command:"
+-  echo -e "$ ${green}PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN \\"
++  echo -e "$ ${green}PIA_PF=$PIA_PF PIA_TOKEN=*** \\"
+   echo "  OVPN_SERVER_IP=$serverIP \\"
+   echo "  OVPN_HOSTNAME=$serverHostname \\"
+   echo "  CONNECTION_SETTINGS=$VPN_PROTOCOL \\"
+diff --git a/run_setup.sh b/run_setup.sh
+index f92f961..63428cd 100755
+--- a/run_setup.sh
++++ b/run_setup.sh
+@@ -478,7 +478,7 @@ elif [[ $VPN_PROTOCOL == wireguard ]]; then
+   echo -e "You will be connecting with ${green}WG_SERVER_IP=$dipAddress${nc} using"
+   echo -e "${green}VPN_PROTOCOL=wireguard${nc}, so we will automatically connect to WireGuard,"
+   echo "by running this command:"
+-  echo -e "$ ${green}PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN" \\
++  echo -e "$ ${green}PIA_PF=$PIA_PF PIA_TOKEN=***" \\
+   echo "DIP_TOKEN=$DIP_TOKEN" \\
+   echo "WG_SERVER_IP=$dipAddress WG_HOSTNAME=$dipHostname" \\
+   echo -e "./connect_to_wireguard_with_token.sh${nc}"
+@@ -493,7 +493,7 @@ elif [[ $VPN_PROTOCOL == openvpn* ]]; then
+   echo "The dedicated IP connection will be started with"
+   echo -e "${green}VPN_PROTOCOL=$VPN_PROTOCOL${nc}, so we will automatically"
+   echo "connect to OpenVPN, by running this command:"
+-  echo -e "$ ${green}PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN" \\
++  echo -e "$ ${green}PIA_PF=$PIA_PF PIA_TOKEN=***" \\
+   echo   "DIP_TOKEN=$DIP_TOKEN OVPN_SERVER_IP=$dipAddress" \\
+   echo   "OVPN_HOSTNAME=$dipHostname" \\
+   echo   "CONNECTION_SETTINGS=$VPN_PROTOCOL" \\
