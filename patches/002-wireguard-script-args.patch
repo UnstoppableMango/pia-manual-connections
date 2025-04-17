@@ -1,0 +1,15 @@
+diff --git a/run_setup.sh b/run_setup.sh
+index f92f961..6a14db7 100755
+--- a/run_setup.sh
++++ b/run_setup.sh
+@@ -483,8 +483,8 @@ elif [[ $VPN_PROTOCOL == wireguard ]]; then
+   echo "WG_SERVER_IP=$dipAddress WG_HOSTNAME=$dipHostname" \\
+   echo -e "./connect_to_wireguard_with_token.sh${nc}"
+   echo
+-  PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN DIP_TOKEN=$DIP_TOKEN \
+-    WG_SERVER_IP=$dipAddress WG_HOSTNAME=$dipHostname \
++  PIA_PF=$PIA_PF PIA_CONNECT=$PIA_CONNECT PIA_TOKEN=$PIA_TOKEN DIP_TOKEN=$DIP_TOKEN \
++    PIA_CONF_PATH=$PIA_CONF_PATH WG_SERVER_IP=$dipAddress WG_HOSTNAME=$dipHostname \
+     ./connect_to_wireguard_with_token.sh
+   rm -f /opt/piavpn-manual/latencyList
+   exit 0
