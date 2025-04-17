@@ -4,7 +4,7 @@ FROM ubuntu:noble-20250404@sha256:1e622c5f073b4f6bfad6632f2616c7f59ef256e96fe78b
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y git
 
-# renovate: datasource=git-regs depName=https://github.com/pia-foss/manual-connections
+# renovate: datasource=git-refs depName=https://github.com/pia-foss/manual-connections
 ARG PIA_VERSION=e956c57849a38f912e654e0357f5ae456dfd1742
 
 WORKDIR /src
