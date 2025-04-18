@@ -82,6 +82,19 @@ index 661bd27..ff1688b 100755
    echo "  OVPN_SERVER_IP=$serverIP \\"
    echo "  OVPN_HOSTNAME=$serverHostname \\"
    echo "  CONNECTION_SETTINGS=$VPN_PROTOCOL \\"
+diff --git a/get_token.sh b/get_token.sh
+index bca23ce..01185ae 100755
+--- a/get_token.sh
++++ b/get_token.sh
+@@ -87,7 +87,7 @@ echo
+ token=$(echo "$generateTokenResponse" | jq -r '.token')
+ tokenExpiration=$(timeout_timestamp)
+ tokenLocation=/opt/piavpn-manual/token
+-echo -e "PIA_TOKEN=$token${nc}"
++echo -e "PIA_TOKEN=***${nc}"
+ echo "$token" > "$tokenLocation" || exit 1
+ echo "$tokenExpiration" >> "$tokenLocation"
+ echo
 diff --git a/run_setup.sh b/run_setup.sh
 index f92f961..63428cd 100755
 --- a/run_setup.sh
