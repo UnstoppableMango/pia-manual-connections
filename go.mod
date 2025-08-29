@@ -41,6 +41,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/muesli/termenv v0.16.0 // indirect
+	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
@@ -53,6 +54,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/unmango/aferox/github v0.0.1 // indirect
 	github.com/unmango/devctl v0.3.0 // indirect
+	github.com/unmango/go-pia v0.0.0-20250413222917-7c090be0c759 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
