@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:noble-20250716@sha256:7c06e91f61fa88c08cc74f7e1b7c69ae24910d745357e0dfe1d2c0322aaf20f9 AS base
+FROM ubuntu:noble-20250805@sha256:9cbed754112939e914291337b5e554b07ad7c392491dba6daf25eef1332a22e8 AS base
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y git
@@ -12,7 +12,7 @@ ADD https://github.com/pia-foss/manual-connections.git#${PIA_VERSION} .
 COPY patches/*.patch /patches/
 RUN git apply /patches/*.patch
 
-FROM ubuntu:noble-20250716@sha256:7c06e91f61fa88c08cc74f7e1b7c69ae24910d745357e0dfe1d2c0322aaf20f9 AS final
+FROM ubuntu:noble-20250805@sha256:9cbed754112939e914291337b5e554b07ad7c392491dba6daf25eef1332a22e8 AS final
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y \
