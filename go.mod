@@ -1,6 +1,6 @@
 module github.com/unstoppablemango/pia-manual-connections
 
-go 1.24.4
+go 1.25.5
 
 toolchain go1.25.6
 
@@ -12,7 +12,7 @@ tool (
 require (
 	github.com/onsi/ginkgo/v2 v2.28.1
 	github.com/onsi/gomega v1.39.1
-	github.com/unmango/go v0.10.2
+	github.com/unmango/go v0.15.1
 )
 
 require (
