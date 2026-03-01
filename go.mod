@@ -2,7 +2,7 @@ module github.com/unstoppablemango/pia-manual-connections
 
 go 1.25.5
 
-toolchain go1.25.6
+toolchain go1.26.0
 
 tool (
 	github.com/onsi/ginkgo/v2/ginkgo
