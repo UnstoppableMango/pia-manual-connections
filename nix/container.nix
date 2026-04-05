@@ -1,16 +1,38 @@
 {
-  version,
-  piaManualConnections,
+  stdenvNoCC,
   dockerTools,
+  lib,
+  piaManualConnections,
+  version,
 }:
+let
+  entrypoint = stdenvNoCC.mkDerivation {
+    name = "entrypoint";
+    src = lib.cleanSource ../.;
+    dontBuild = true;
+
+    installPhase = ''
+      install -Dm755 entrypoint.sh $out/bin/entrypoint
+    '';
+
+    postFixup = ''
+      patchShebangs $out/bin/entrypoint
+      substituteInPlace $out/bin/entrypoint \
+        --replace ./run_setup.sh ${piaManualConnections}/bin/run_setup
+    '';
+  };
+in
 dockerTools.streamLayeredImage {
   name = "pia-manual-connections";
   tag = version;
 
-  contents = piaManualConnections;
+  contents = [
+    piaManualConnections
+    entrypoint
+  ];
 
   config = {
-    Cmd = [ "/bin/run_setup" ];
+    Cmd = [ "/bin/entrypoint" ];
     Volumes = {
       "/opt/piavpn-manual" = { };
     };
