@@ -32,6 +32,9 @@
         { pkgs, system, ... }:
         let
           version = "0.2.2";
+
+          piaManualConnections = pkgs.callPackage ./nix { inherit version; };
+          ctr = pkgs.callPackage ./nix/container.nix { inherit version piaManualConnections; };
         in
         {
           _module.args.pkgs = import inputs.nixpkgs {
@@ -39,11 +42,15 @@
             overlays = with inputs; [ gomod2nix.overlays.default ];
           };
 
-          packages.default = pkgs.callPackage ./nix { inherit version; };
+          packages = {
+            inherit piaManualConnections ctr;
+            default = piaManualConnections;
+          };
 
           devShells.default = pkgs.mkShellNoCC {
             packages = with pkgs; [
               direnv
+              docker
               go
               gomod2nix
               gopls
