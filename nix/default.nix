@@ -1,4 +1,5 @@
 {
+	bashInteractive,
   busybox,
   curl,
   fetchFromGitHub,
@@ -7,13 +8,14 @@
   ncurses,
   lib,
   openvpn,
-  stdenv,
+  stdenvNoCC,
   version,
   wireguard-tools,
   makeWrapper,
 }:
 let
   path = lib.makeBinPath [
+		bashInteractive
     busybox
     curl
     iproute2
@@ -23,7 +25,7 @@ let
     wireguard-tools
   ];
 in
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   pname = "pia-manual-connections";
   inherit version;
 
@@ -44,6 +46,7 @@ stdenv.mkDerivation {
   installPhase = ''
     install -Dm755 connect_to_openvpn_with_token.sh $out/bin/connect_to_openvpn_with_token
     install -Dm755 connect_to_wireguard_with_token.sh $out/bin/connect_to_wireguard_with_token
+    install -Dm755 get_dip.sh $out/bin/get_dip
     install -Dm755 get_token.sh $out/bin/get_token
     install -Dm755 get_region.sh $out/bin/get_region
     install -Dm755 port_forwarding.sh $out/bin/port_forwarding
@@ -65,10 +68,12 @@ stdenv.mkDerivation {
       --replace ./get_token.sh $out/bin/get_token
 
     substituteInPlace $out/bin/run_setup \
-      --replace ./get_region.sh $out/bin/get_region
+      --replace ./get_region.sh $out/bin/get_region \
+      --replace ./get_token.sh $out/bin/get_token
 
     wrapProgram $out/bin/connect_to_openvpn_with_token --set PATH ${path}
     wrapProgram $out/bin/connect_to_wireguard_with_token --set PATH ${path}
+    wrapProgram $out/bin/get_dip --set PATH ${path}
     wrapProgram $out/bin/get_token --set PATH ${path}
     wrapProgram $out/bin/get_region --set PATH ${path}
     wrapProgram $out/bin/port_forwarding --set PATH ${path}
