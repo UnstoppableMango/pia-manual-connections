@@ -1,5 +1,5 @@
 {
-	bashInteractive,
+  bashInteractive,
   busybox,
   curl,
   fetchFromGitHub,
@@ -15,7 +15,7 @@
 }:
 let
   path = lib.makeBinPath [
-		bashInteractive
+    bashInteractive
     busybox
     curl
     iproute2
