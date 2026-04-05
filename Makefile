@@ -2,17 +2,20 @@ _ != mkdir -p .make
 PROJECT := unstoppablemango/pia-manual-connections
 IMG     := ${PROJECT}:v0.0.1-alpha
 
-GO     ?= go
-DEVCTL ?= $(GO) tool devctl
-DOCKER ?= docker
-GINKGO ?= $(GO) tool ginkgo
+GO        ?= go
+DEVCTL    ?= $(GO) tool devctl
+DOCKER    ?= docker
+GINKGO    ?= $(GO) tool ginkgo
+GOMOD2NIX ?= gomod2nix
 
 GO_SRC ?= $(shell find . -name '*.go' -printf '%P\n')
 
 build: result
 docker: .make/docker-build
 test: .make/go-test
+
 tidy: go.sum
+	$(GOMOD2NIX)
 
 load: bin/stream-image.sh
 	$< | $(DOCKER) load
