@@ -37,6 +37,18 @@ schema = 3
     version = 'v0.2.2'
     hash = 'sha256-KF7IU1Luxl/sZP6XjomWB2e3lxSUS4/5AahhapGir/4='
 
+  [mod.'github.com/clipperhouse/displaywidth']
+    version = 'v0.9.0'
+    hash = 'sha256-9CNyTZPSncKQ7Y0my9DR4WYXDjtDHYNL512D691WDAM='
+
+  [mod.'github.com/clipperhouse/stringish']
+    version = 'v0.1.1'
+    hash = 'sha256-Mp8M1CRbwr6dcJ4BD9tXD5I78ZgCFEm0GDxJv0GYReg='
+
+  [mod.'github.com/clipperhouse/uax29/v2']
+    version = 'v2.5.0'
+    hash = 'sha256-Men4JLhiuEtAx8ZSzId5ciRWhud68o3k/B48ppwyxkM='
+
   [mod.'github.com/fsnotify/fsnotify']
     version = 'v1.9.0'
     hash = 'sha256-WtpE1N6dpHwEvIub7Xp/CrWm0fd6PX7MKA4PV44rp2g='
@@ -61,9 +73,9 @@ schema = 3
     version = 'v0.7.0'
     hash = 'sha256-JbxZFBFGCh/Rj5XZ1vG94V2x7c18L8XKB0N9ZD5F2rM='
 
-  [mod.'github.com/google/go-github/v72']
-    version = 'v72.0.0'
-    hash = 'sha256-q/evX1n50sEJCDsheGYv63ToFFX8UQPqliJm6FNJd28='
+  [mod.'github.com/google/go-github/v81']
+    version = 'v81.0.0'
+    hash = 'sha256-+ufveUz5MphSn3KVU0v+5mlV0sPyeZC5g7jyR37kg0Q='
 
   [mod.'github.com/google/go-querystring']
     version = 'v1.2.0'
@@ -117,10 +129,6 @@ schema = 3
     version = 'v0.12.0'
     hash = 'sha256-EXk9S5Z5sYyApAzCgHIugsGMbt/pHWRfHYFZH5D+5Ws='
 
-  [mod.'github.com/sourcegraph/conc']
-    version = 'v0.3.1-0.20240121214520-5f936abd7ae8'
-    hash = 'sha256-AUNFlY6K7s1aoW/vb4pjK84ROdnVZY1i6cOmdeG+wN8='
-
   [mod.'github.com/spf13/afero']
     version = 'v1.15.0'
     hash = 'sha256-LhcezbOqfuBzacytbqck0hNUxi6NbWNhifUc5/9uHQ8='
@@ -161,18 +169,6 @@ schema = 3
     version = 'v0.0.0-20220910002029-abceb7e1c41e'
     hash = 'sha256-GyCDxxMQhXA3Pi/TsWXpA8cX5akEoZV7CFx4RO3rARU='
 
-  [mod.'go.uber.org/atomic']
-    version = 'v1.9.0'
-    hash = 'sha256-D8OtLaViqPShz1w8ijhIHmjw9xVaRu0qD2hXKj63r4Q='
-
-  [mod.'go.uber.org/automaxprocs']
-    version = 'v1.6.0'
-    hash = 'sha256-a/Agm+kM9x+VRo0CYyTL3ipUYv9Glrc4NeGSZJdpobA='
-
-  [mod.'go.uber.org/multierr']
-    version = 'v1.9.0'
-    hash = 'sha256-tlDRooh/V4HDhZohsUrxot/Y6uVInVBtRWCZbj/tPds='
-
   [mod.'go.yaml.in/yaml/v3']
     version = 'v3.0.4'
     hash = 'sha256-NkGFiDPoCxbr3LFsI6OCygjjkY0rdmg5ggvVVwpyDQ4='
@@ -204,7 +200,3 @@ schema = 3
   [mod.'golang.org/x/tools']
     version = 'v0.41.0'
     hash = 'sha256-/Plnksa1jSr4jYJc2oCH9fcjGbWocM7EYposMP0tScQ='
-
-  [mod.'gopkg.in/yaml.v3']
-    version = 'v3.0.1'
-    hash = 'sha256-FqL9TKYJ0XkNwJFnq9j0VvJ5ZUU1RvH/52h/f5bkYAU='

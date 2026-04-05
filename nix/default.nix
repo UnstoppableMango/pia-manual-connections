@@ -6,6 +6,7 @@
   jq,
   ncurses,
   lib,
+  openvpn,
   stdenv,
   version,
   wireguard-tools,
@@ -43,6 +44,7 @@ let
             iproute2
             jq
             ncurses
+            openvpn
             wireguard-tools
           ]
         }
