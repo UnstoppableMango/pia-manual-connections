@@ -1,10 +1,10 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		"config:recommended",
-		"github>UnstoppableMango/renovate-config"
-	],
+	"extends": ["config:recommended", "github>UnstoppableMango/renovate-config"],
 	"automerge": true,
+	"nix": {
+		"enabled": true
+	},
 	"customManagers": [
 		{
 			"customType": "regex",
