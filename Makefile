@@ -2,14 +2,25 @@ _ != mkdir -p .make
 PROJECT := unstoppablemango/pia-manual-connections
 IMG     := ${PROJECT}:v0.0.1-alpha
 
-DEVCTL := go tool devctl
-GINKGO := go tool ginkgo
+DEVCTL ?= go tool devctl
+GINKGO ?= go tool ginkgo
 
-GO_SRC != $(DEVCTL) list --go
+GO_SRC ?= $(shell find . -name '*.go' -printf '%P\n')
 
+build: result
 docker: .make/docker-build
 test: .make/go-test
 tidy: go.sum
+
+check:
+	nix flake check
+
+update:
+	nix flake update
+
+.PHONY: result
+result:
+	nix build
 
 go.sum: go.mod ${GO_SRC}
 	go mod tidy

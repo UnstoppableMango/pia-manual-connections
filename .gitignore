@@ -4,3 +4,4 @@
 .envrc
 bin/
 *.test
+/result
