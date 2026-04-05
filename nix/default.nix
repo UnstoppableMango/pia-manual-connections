@@ -52,20 +52,16 @@ stdenv.mkDerivation {
 
   postFixup = ''
     substituteInPlace $out/bin/connect_to_openvpn_with_token \
-      --replace ./port_forwarding.sh $out/bin/port_forwarding
-    substituteInPlace $out/bin/connect_to_openvpn_with_token \
+      --replace ./port_forwarding.sh $out/bin/port_forwarding \
       --replace ./get_token.sh $out/bin/get_token
 
     substituteInPlace $out/bin/connect_to_wireguard_with_token \
-      --replace ./port_forwarding.sh $out/bin/port_forwarding
-    substituteInPlace $out/bin/connect_to_wireguard_with_token \
+      --replace ./port_forwarding.sh $out/bin/port_forwarding \
       --replace ./get_token.sh $out/bin/get_token
 
     substituteInPlace $out/bin/get_region \
-      --replace ./connect_to_openvpn_with_token.sh $out/bin/connect_to_openvpn_with_token
-    substituteInPlace $out/bin/get_region \
-      --replace ./connect_to_wireguard_with_token.sh $out/bin/connect_to_wireguard_with_token
-    substituteInPlace $out/bin/get_region \
+      --replace ./connect_to_openvpn_with_token.sh $out/bin/connect_to_openvpn_with_token \
+      --replace ./connect_to_wireguard_with_token.sh $out/bin/connect_to_wireguard_with_token \
       --replace ./get_token.sh $out/bin/get_token
 
     substituteInPlace $out/bin/run_setup \
@@ -73,6 +69,9 @@ stdenv.mkDerivation {
 
     wrapProgram $out/bin/connect_to_openvpn_with_token --set PATH ${path}
     wrapProgram $out/bin/connect_to_wireguard_with_token --set PATH ${path}
+    wrapProgram $out/bin/get_token --set PATH ${path}
+    wrapProgram $out/bin/get_region --set PATH ${path}
+    wrapProgram $out/bin/port_forwarding --set PATH ${path}
     wrapProgram $out/bin/run_setup --set PATH ${path}
   '';
 

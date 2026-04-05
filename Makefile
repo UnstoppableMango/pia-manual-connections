@@ -27,7 +27,7 @@ update:
 result:
 	nix build
 
-bin/stream-image.sh: nix/container.nix
+bin/stream-image.sh: $(wildcard nix/*) flake.nix
 	nix build .#ctr --out-link $@
 
 go.sum: go.mod ${GO_SRC}
