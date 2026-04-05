@@ -16,6 +16,7 @@ let
     '';
 
     postFixup = ''
+      patchShebangs $out/bin/entrypoint
       substituteInPlace $out/bin/entrypoint \
         --replace ./run_setup.sh ${piaManualConnections}/bin/run_setup
     '';
