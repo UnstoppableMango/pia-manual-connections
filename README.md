@@ -1,5 +1,7 @@
 # Docker pia-foss/manual-connections
 
+[![Hercules CI](https://hercules-ci.com/api/v1/site/github/account/UnstoppableMango/project/pia-manual-connections/badge)](https://hercules-ci.com/github/UnstoppableMango/pia-manual-connections)
+
 Private Internet Access manual connections scripts but in a docker container.
 
 ## Getting Started
