@@ -5,7 +5,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y git
 
 # renovate: datasource=git-refs depName=https://github.com/pia-foss/manual-connections
-ARG PIA_VERSION=a1412dbe2ca41edbb79c766bc475335cb6cb13ad
+ARG PIA_VERSION=645377e87238a52596c004f760d238e3faea68d1
 
 WORKDIR /src
 ADD https://github.com/pia-foss/manual-connections.git#${PIA_VERSION} .
