@@ -1,18 +1,18 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64 AS base
+FROM ubuntu:26.04@sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944 AS base
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y git
 
 # renovate: datasource=git-refs depName=https://github.com/pia-foss/manual-connections
-ARG PIA_VERSION=a1412dbe2ca41edbb79c766bc475335cb6cb13ad
+ARG PIA_VERSION=645377e87238a52596c004f760d238e3faea68d1
 
 WORKDIR /src
 ADD https://github.com/pia-foss/manual-connections.git#${PIA_VERSION} .
 COPY patches/*.patch /patches/
 RUN git apply /patches/*.patch
 
-FROM ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64 AS final
+FROM ubuntu:26.04@sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944 AS final
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y \
